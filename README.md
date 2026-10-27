@@ -58,3 +58,19 @@ POST /lecturas, http://127.0.0.1:8000/lecturas, 200, 422
 
 PUT /led con {"color":"amarillo"}. 
 PUT /led, http://127.0.0.1:8000/led, 200, 422
+
+## Datos del Estudiante
+Nombre: Allan Chancay Chiriguaya
+Objetivo: Identificar la estructura de un backend, comprender las rutas, modelos, servicios y almacenamiento, ejecutar la API localmente, probar endpoints desde Swagger y agregar una nueva ruta superando el reto propuesto.
+
+## Respuestas a las Preguntas
+*1. ¿Qué función recibe el JSON y cuál lo guarda?*
+La que recibe la petición es `post_lectura` en `routes.py`, y la que guarda los datos es `guardar_lectura` en `services.py`.
+*2. ¿Qué archivo cambiarías para añadir una URL?**
+El archivo `routes.py`.
+*3. ¿Qué ocurre con las lecturas y el color cuando se reinicia la API? ¿Por qué?*
+Se borran y el color vuelve a su estado inicial ("apagado"). Esto ocurre porque el almacenamiento (`store.py`) mantiene los datos en la memoria RAM del proceso, no en una base de datos persistente.
+*4. ¿Por qué una petición con JSON bien escrito puede devolver 422? Indica qué archivo define esa validación.*
+Porque los valores rompen las reglas de negocio (ej. enviar humedad de 150 cuando el máximo es 100). Estas validaciones lógicas se definen en los modelos Pydantic dentro de `schemas.py`.
+*5. Explica el recorrido completo de una lectura: ESP8266, ruta, modelo, servicio, almacenamiento y respuesta. ¿En qué momento cambia el LED?*
+El ESP8266 envía el POST -> `routes.py` recibe la petición -> `schemas.py` valida la estructura -> `services.py` ejecuta la lógica -> `store.py` añade el dato a la lista en memoria. El LED cambia en el hardware físicamente solo después de que el ESP8266 lee y procesa la respuesta devuelta por la API.

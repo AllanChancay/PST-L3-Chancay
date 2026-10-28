@@ -60,7 +60,7 @@ PUT /led con {"color":"amarillo"}.
 PUT /led, http://127.0.0.1:8000/led, 200, 422
 
 ## Datos del Estudiante
-Nombre: Allan Chancay Chiriguaya
+Nombre: Chancay Chiriguaya Allan y Cayambe Sinche Anthony Joel 
 
 Objetivo: Identificar la estructura de un backend, comprender las rutas, modelos, servicios y almacenamiento, ejecutar la API localmente, probar endpoints desde Swagger y agregar una nueva ruta superando el reto propuesto.
 
